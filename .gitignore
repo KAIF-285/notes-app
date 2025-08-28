@@ -1,0 +1,24 @@
+# Node
+node_modules/
+client/node_modules/
+npm-debug.log*
+
+# Build outputs
+client/dist/
+
+# Env files
+.env
+env
+env.local
+client/.env
+client/.env.*
+
+# OS files
+.DS_Store
+
+# Logs
+logs
+*.log
+*.log.*
+
+
