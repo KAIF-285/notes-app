@@ -64,7 +64,7 @@ async function init(){
 //stitch the route to the server
 
 require("./routes/auth.routes")(app)//calling routes and passing app object
-require("./routes/category.routes")(app)
+// require("./routes/category.routes")(app) // removed unused categories
 require("./routes/notes.routes")(app)
 //start server
 
