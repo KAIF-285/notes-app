@@ -3,7 +3,7 @@ const category_model=require("../models/category.model")
 
 //controller for creating the category
 
- // POST localhost:8080/ecomm/api/v1/categories
+ // POST localhost:8080/notes/api/v1/categories
 
  exports.createNewCategory=async (req,res)=>{
     //read the req body

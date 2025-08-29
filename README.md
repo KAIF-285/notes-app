@@ -27,13 +27,13 @@ How it’s organized
 
 Auth flows I designed
 - Password
-  - `POST /ecomm/api/v1/auth/signup` hashes the password with bcrypt and stores the user
-  - `POST /ecomm/api/v1/auth/signin` validates credentials and returns a JWT
+  - `POST /notes/api/v1/auth/signup` hashes the password with bcrypt and stores the user
+  - `POST /notes/api/v1/auth/signin` validates credentials and returns a JWT
 - OTP
-  - `POST /ecomm/api/v1/auth/request-otp` creates a 6‑digit code (5 min expiry) and stores it; I return it for demo purposes
-  - `POST /ecomm/api/v1/auth/verify-otp` validates code/expiry and returns a JWT
+  - `POST /notes/api/v1/auth/request-otp` creates a 6‑digit code (5 min expiry) and stores it; I return it for demo purposes
+  - `POST /notes/api/v1/auth/verify-otp` validates code/expiry and returns a JWT
 - Google (for assignment)
-  - `POST /ecomm/api/v1/auth/google` accepts an ID token payload, creates/updates the user, and returns a JWT
+  - `POST /notes/api/v1/auth/google` accepts an ID token payload, creates/updates the user, and returns a JWT
 
 Notes protection
 - Middleware checks the JWT from `x-access-token`, loads the user, and then allows the request
@@ -62,11 +62,11 @@ npm run dev
 ```
 
 API endpoints
-- `POST /ecomm/api/v1/auth/signup` — { name, userId, email, password, dob? }
-- `POST /ecomm/api/v1/auth/signin` — { userId, password }
-- `POST /ecomm/api/v1/auth/request-otp` — { email, name?, userId?, dob? }
-- `POST /ecomm/api/v1/auth/verify-otp` — { email, otp }
-- `POST /ecomm/api/v1/auth/google` — { idToken, name?, dob? }
+- `POST /notes/api/v1/auth/signup` — { name, userId, email, password, dob? }
+- `POST /notes/api/v1/auth/signin` — { userId, password }
+- `POST /notes/api/v1/auth/request-otp` — { email, name?, userId?, dob? }
+- `POST /notes/api/v1/auth/verify-otp` — { email, otp }
+- `POST /notes/api/v1/auth/google` — { idToken, name?, dob? }
 - Notes (send JWT in `x-access-token`):
   - `GET /api/v1/notes`
   - `POST /api/v1/notes` — { title, content }

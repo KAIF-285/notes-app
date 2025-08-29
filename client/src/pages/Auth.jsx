@@ -19,7 +19,7 @@ export default function Auth(){
       return;
     }
     try{
-      const res = await api.post('/ecomm/api/v1/auth/signup', { ...form, provider:'password' })
+      const res = await api.post('/notes/api/v1/auth/signup', { ...form, provider:'password' })
       setMessage('Signup successful. You can sign in now.')
     }catch(e){ setError(e?.response?.data?.message || 'Signup failed') }
   }
@@ -28,7 +28,7 @@ export default function Auth(){
     setError(''); setMessage('')
     if(!form.userId || !form.password){ setError('User ID and password are required.'); return }
     try{
-      const res = await api.post('/ecomm/api/v1/auth/signin', { userId: form.userId, password: form.password })
+      const res = await api.post('/notes/api/v1/auth/signin', { userId: form.userId, password: form.password })
       localStorage.setItem('token', res.data.accessToken)
       localStorage.setItem('user', JSON.stringify(res.data))
       navigate('/notes')
@@ -39,7 +39,7 @@ export default function Auth(){
     setError(''); setMessage('')
     if(!form.email){ setError('Email is required for OTP.'); return }
     try{
-      const res = await api.post('/ecomm/api/v1/auth/request-otp', { email: form.email, name: form.name, userId: form.userId, dob: form.dob })
+      const res = await api.post('/notes/api/v1/auth/request-otp', { email: form.email, name: form.name, userId: form.userId, dob: form.dob })
       setMessage('OTP sent: ' + res.data.otp)
     }catch(e){ setError(e?.response?.data?.message || 'OTP request failed') }
   }
@@ -48,7 +48,7 @@ export default function Auth(){
     setError(''); setMessage('')
     if(!form.email || !form.otp){ setError('Email and OTP are required.'); return }
     try{
-      const res = await api.post('/ecomm/api/v1/auth/verify-otp', { email: form.email, otp: form.otp })
+      const res = await api.post('/notes/api/v1/auth/verify-otp', { email: form.email, otp: form.otp })
       localStorage.setItem('token', res.data.accessToken)
       localStorage.setItem('user', JSON.stringify(res.data))
       navigate('/notes')
@@ -61,7 +61,7 @@ export default function Auth(){
       // For assignment demo, simulate an ID token payload
       const payload = btoa(JSON.stringify({ email: form.email, sub: 'fake-google-sub', name: form.name || form.email }))
       const token = 'header.'+payload+'.sig'
-      const res = await api.post('/ecomm/api/v1/auth/google', { idToken: token, name: form.name })
+      const res = await api.post('/notes/api/v1/auth/google', { idToken: token, name: form.name })
       localStorage.setItem('token', res.data.accessToken)
       localStorage.setItem('user', JSON.stringify(res.data))
       navigate('/notes')
